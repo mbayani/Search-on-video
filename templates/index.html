@@ -1,0 +1,153 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+  <style>
+      body{
+        padding:30px;
+      }
+
+      .header-info{
+        background-color:#0C134B;
+        color:white;
+        font-size:18pt;
+        text-align:center;
+        padding-top:20px;
+        padding-bottom:20px;
+      }
+
+      .header-team{
+        padding-top:30px;
+      }
+
+      .header-p{
+        background-color:#A0E0F7;
+        border-radius:4px;
+        padding:30px;
+        text-align:center;
+      }
+
+      .form1{
+        padding-left:30px;
+      }
+
+      .footer{
+        padding-top:10px;
+        padding-bottom:10px;
+        background-color:#0C134B;
+      }
+
+      .button-selection{
+        flex:row;
+      }
+
+      .form2-default-values{
+        padding: 20px;
+      }
+
+  </style>
+<body>
+
+<div class="header-info">
+    <strong>Video Search - CS445 Final Project<strong></div>
+    <div><br/><br/>
+    <div>
+      <div class="header-team">
+        <p class="header-p">
+          <strong>Team:</strong>
+          <br/>
+          Negin Kashkooli (negink2)<br/><br/>
+          Mani Bayani (...)<br/><br/>
+          ... (...)<br/><br/>
+          <strong>Supervisor:</strong><br/>
+          Prof. Derek Hoiem<br/><br/><br/>
+          University of Illinois<br/>
+          at Urbana Champaign
+        </p>
+      </div>
+        <br/><br/>
+        <div class="button-selection">
+          <input type="button" class="btn btn-success select-form1" value="Search with your own video and query image" />
+          <input type="button" class="btn btn-success select-form2" value="Search with default video and query image" />
+        </div>
+        <br/><br/>
+        <div class="form1">
+          <p>
+            Form 1 - Search with your own video and query image:
+            <br/><br/>
+            Please upload the video and the query image to see the result.<br/>
+            Or simply use the default form to perform search for the default values.
+          <br/>
+          </p>
+          <div class="form-group">
+            <form method="POST" enctype='multipart/form-data'>
+              Video: <br/><input type="file" name="video" class="form-control-file"><br><br/>
+              Query Image: <br/><input type="file" name="image" class="form-control-file"><br><br/>
+              <input type="submit" value="Search" class="btn btn-primary"><br>
+            </form>
+          </div>
+        </div>
+  <br/>
+
+  <div class="form2">
+    Search with default video and query Image:
+    <br/><br/>
+    <div class="row form2-default-values">
+      <div class="col-md-6">
+        <div>
+          Default Video:
+          <br/><br/>
+          <video controls>
+            <source src="static/defaultvalues/video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          Default Image:
+          <br/><br/>
+          <img src="static/defaultvalues/query.png" style="width:200px; height:200px"/>
+        </div>
+      </div>
+    </div>
+    <br/><br/>
+    <form method="POST" style="padding-left:30px" enctype='multipart/form-data'>
+      <div style="display: none;">
+        <input type="file" name="video">
+        <input type="file" name="image">
+      </div>
+      <input type="submit" value="Search" class="btn btn-primary"><br>
+    </form>
+  </div>
+
+
+
+  <div class="footer">
+  </div>
+
+  </div>
+  </body>
+  </html>
+
+
+  <script type="text/javascript">
+      $(function() {
+        $('.form1').hide();
+        $('.form2').hide();
+        $('.select-form1').click(function(){selectForm('form1');});
+        $('.select-form2').click(function() {selectForm('form2');});
+
+        function selectForm(mode){
+          if(mode == 'form1'){
+            $('.form1').show();
+            $('.form2').hide();
+          }
+          else{
+            $('.form2').show();
+            $('.form1').hide();
+          }
+        }
+
+      });
+  </script>
