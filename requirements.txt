@@ -1,0 +1,7 @@
+Flask==1.0.3
+Flask-RESTful==0.3.7
+Flask-SocketIO==4.1.0
+flask_restplus==0.13.0
+opencv-python
+glob3
+imutils
