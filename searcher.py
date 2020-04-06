@@ -21,3 +21,7 @@ class Searcher(object):
 		d = np.sum([((a - b) ** 2)
 			for (a, b) in zip(histA, histB)])
 		return d
+	
+	def searchKeypoints(self, matches, limit = 10):
+		results = sorted([(v, k) for (k, v) in matches],reverse = True)
+		return results[:limit]

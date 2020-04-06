@@ -28,3 +28,10 @@ class ImageFeatures:
         else:
             hist = cv2.normalize(hist, hist).flatten()
         return hist
+    
+    def imageKeypoints(self, image):
+        img1 = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)        
+        #sift
+        sift = cv2.xfeatures2d.SIFT_create()
+        keypoints, descriptors = sift.detectAndCompute(img1,None)
+        return keypoints, descriptors
