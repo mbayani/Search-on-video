@@ -26,7 +26,7 @@ def form_example():
     if request.method == 'POST': #this block is only entered when the form is submitted
         dataset_path = 'video_frames'
         index_path = 'index.csv'
-        query_path = 'queries'
+        query_path = 'static/defaultvalues'
         result_path = 'static/result'
         
         video = request.files['video']
@@ -45,8 +45,8 @@ def form_example():
             query_path = 'static/defaultvalues/query4.png'
         else:
             #save query image
-            if os.path.exists("queries/" + query_image.filename):
-                os.remove("queries/" + query_image.filename)
+            if os.path.exists("static/defaultvalues/" + query_image.filename):
+                os.remove("static/defaultvalues/" + query_image.filename)
             query_image.save(os.path.join(query_path, query_image.filename))
             query_path = os.path.join(query_path, query_image.filename)
 
@@ -95,8 +95,8 @@ def form_example_2():
             query_path = 'static/defaultvalues/query4.png'
         else:
             #save query image
-            if os.path.exists("queries/" + query_image.filename):
-                os.remove("queries/" + query_image.filename)
+            if os.path.exists("static/defaultvalues/" + query_image.filename):
+                os.remove("static/defaultvalues/" + query_image.filename)
             query_image.save(os.path.join(query_path, query_image.filename))
             query_path = os.path.join(query_path, query_image.filename)
 
