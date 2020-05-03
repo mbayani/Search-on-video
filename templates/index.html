@@ -70,55 +70,12 @@
       </div>
         <br/><br/>
         <div class="button-selection">
-          <input type="button" class="btn btn-success select-form1" value="Search with your own video and query image" />
-          <input type="button" class="btn btn-success select-form2" value="Search with default video and query image" />
+          <p>Search with the following methods:<br/><br/></p>
+          <a href="/search_ssd" class="btn btn-success">SSD</a>
+          <a href="/search_sift" class="btn btn-success">SIFT</a>
+          <a href="/search_iso" class="btn btn-success">ISO Mapping</a>
         </div>
-        <br/><br/>
-        <div class="form1">
-          <p>
-            Form 1 - Search with your own video and query image:
-            <br/><br/>
-            Please upload the video and the query image to see the result.<br/>
-            Or simply use the default form to perform search for the default values.
-          <br/>
-          </p>
-          <div class="form-group">
-            <form method="POST" enctype='multipart/form-data'>
-              Video: <br/><input type="file" name="video" class="form-control-file"><br><br/>
-              Query Image: <br/><input type="file" name="image" class="form-control-file"><br><br/>
-              <input type="submit" value="Search" class="btn btn-primary"><br>
-            </form>
-          </div>
-        </div>
-  <br/>
-
-  <div class="form2">
-    Search with default video and query Image:
-    <br/><br/>
-    <div class="row form2-default-values">
-      <div class="col-md-6">
-        <div>
-          Default Video:
-          <br/><br/>
-          <iframe width="500" height="500" src="https://www.youtube.com/embed/6jrS8Qygltg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div>
-          Default Image:
-          <br/><br/>
-          <img src="static/defaultvalues/query4.png" style="width:200px; height:200px"/>
-        </div>
-      </div>
-    </div>
-    <br/><br/>
-    <form method="POST" style="padding-left:30px" enctype='multipart/form-data'>
-      <div style="display: none;">
-        <input type="file" name="video">
-        <input type="file" name="image">
-      </div>
-      <input type="submit" value="Search" class="btn btn-primary"><br>
-    </form>
+        <br/><br/>     
   </div>
 
 

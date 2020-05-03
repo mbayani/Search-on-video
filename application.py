@@ -2,6 +2,8 @@
 from flask import Flask, request, Blueprint, jsonify, render_template
 from flask_restful import Api
 import os, os.path, shutil
+import ISOMapping
+from ISOMapping import isoMapping
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
 api = Api(api_blueprint)
@@ -14,10 +16,10 @@ app.register_blueprint(api_blueprint)
 
 @app.route('/', methods=['GET']) #allow both GET and POST requests
 def home():
-    return "hi"
+    return render_template("index.html")
     
 
-@app.route('/search', methods=['GET', 'POST']) #allow both GET and POST requests
+@app.route('/search_ssd', methods=['GET', 'POST']) #allow both GET and POST requests
 def form_example():
     from videosplitter import VideoSplitter
     from indexer import Indexer
@@ -33,7 +35,7 @@ def form_example():
         query_image = request.files['image']
 
         if(video.filename == ''):
-            videofilename = 'static/defaultvalues/Video4.mp4'
+            videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
         else:
             # save video
             if os.path.exists(video.filename):
@@ -42,7 +44,7 @@ def form_example():
             videofilename = video.filename
 
         if(query_image.filename == ''):
-            query_path = 'static/defaultvalues/query4.png'
+            query_path = 'static/defaultvalues/query4_amn_cs445.png'
         else:
             #save query image
             if os.path.exists("static/defaultvalues/" + query_image.filename):
@@ -64,10 +66,51 @@ def form_example():
              output.append(image)
         return render_template("result.html", images = output)
 
-    return render_template("index.html")
+    return render_template("index_ssd.html")
 
 
-@app.route('/search_keypoints', methods=['GET', 'POST']) #allow both GET and POST requests
+@app.route('/search_iso', methods=['GET', 'POST']) #allow both GET and POST requests
+def form_ISO():
+    from videosplitter import VideoSplitter
+    from indexer import Indexer
+    from search import Search
+
+    if request.method == 'POST': #this block is only entered when the form is submitted
+        dataset_path = 'video_frames'
+        index_path = 'index.csv'
+        query_path = 'static/defaultvalues'
+        result_path = 'static/result'
+        
+        video = request.files['video']
+        query_image = request.files['image']
+
+        if(video.filename == ''):
+            videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
+        else:
+            # save video
+            if os.path.exists(video.filename):
+                os.remove(video.filename)
+            video.save(os.path.join('static/defaultvalues/', video.filename))
+            videofilename = video.filename
+
+        if(query_image.filename == ''):
+            query_path = 'static/defaultvalues/query_iso_amn_cs445.jpg'
+        else:
+            #save query image
+            if os.path.exists("static/defaultvalues/" + query_image.filename):
+                os.remove("static/defaultvalues/" + query_image.filename)
+            query_image.save(os.path.join(query_path, query_image.filename))
+            query_path = os.path.join(query_path, query_image.filename)
+
+        output = isoMapping('static/defaultvalues/query_iso_amn_cs445.jpg')
+
+        return render_template("result.html", images = output)
+        
+
+    return render_template("index_iso.html")
+
+
+@app.route('/search_sift', methods=['GET', 'POST']) #allow both GET and POST requests
 def form_example_2():
     from videosplitter import VideoSplitter
     from indexer import Indexer
@@ -83,7 +126,7 @@ def form_example_2():
         query_image = request.files['image']
 
         if(video.filename == ''):
-            videofilename = 'static/defaultvalues/Video4.mp4'
+            videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
         else:
             # save video
             if os.path.exists(video.filename):
@@ -92,7 +135,7 @@ def form_example_2():
             videofilename = video.filename
 
         if(query_image.filename == ''):
-            query_path = 'static/defaultvalues/query4.png'
+            query_path = 'static/defaultvalues/query4_amn_cs445.png'
         else:
             #save query image
             if os.path.exists("static/defaultvalues/" + query_image.filename):
@@ -115,7 +158,7 @@ def form_example_2():
             matchOutput.append(matchImage)
         return render_template("result-keypoints.html", images = output, matches = matchOutput)
 
-    return render_template("index.html")
+    return render_template("index_sift.html")
 
 
 """ The Commented Out Section is For Local Machines Use Only """
