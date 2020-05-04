@@ -136,7 +136,7 @@ def isoMapping(query_image_path):
 
 
     for j,i in enumerate(np.ndarray.tolist(idx.astype(int))):
-        output[j,:,:,:] = cv2.imread(filenames[i], cv2.COLOR_BGR2RGB)#cv2.cvtColor(cv2.imread(filenames[i]), cv2.COLOR_BGR2RGB)# / 255.0
+        output[j,:,:,:] = cv2.imread(filenames[i])
 
     result = []
     for i in range(10):
