@@ -35,3 +35,14 @@ class ImageFeatures:
         sift = cv2.xfeatures2d.SIFT_create()
         keypoints, descriptors = sift.detectAndCompute(img1,None)
         return keypoints, descriptors
+    
+    def orbKeypoints(self, image):
+		'''
+		ORB is an open source implementation. A better alternate to SIFT. It detencts less keypoints but 
+		given it is open source, so works okay.
+		'''
+		#print("orbKeypoints:image_path:%s"%image)
+		img1 = cv2.cvtColor(image.astype('uint8'), cv2.COLOR_BGR2GRAY) #cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+		orb = cv2.ORB_create(nfeatures=2000)
+		keypoints, descriptors = orb.detectAndCompute(img1, None)
+		return keypoints, descriptors
