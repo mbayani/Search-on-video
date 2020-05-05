@@ -163,7 +163,7 @@ def form_example_2():
             matchImage = matchResult[i]
             output.append(image)
             matchOutput.append(matchImage)
-        return render_template("result-keypoints.html", images = output, matches = matchOutput)
+        return render_template("result-keypoints.html", images = output, matches = matchOutput, header="SIFT")
 
     return render_template("index_sift.html")
 
