@@ -2,6 +2,7 @@
 from flask import Flask, request, Blueprint, jsonify, render_template
 from flask_restful import Api
 import os, os.path, shutil
+from shutil import copyfile
 import ISOMapping
 from ISOMapping import isoMapping
 import timeit
@@ -42,6 +43,9 @@ def form_example():
 
         video = request.files['video']
         query_image = request.files['image']
+
+        copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
+        copyfile('static/defaultfiles/query4_amn_cs445.png', 'static/defaultvalues/query4_amn_cs445.png')
 
         if (video.filename == ''):
             videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
@@ -92,6 +96,9 @@ def form_ISO():
         video = request.files['video']
         query_image = request.files['image']
 
+        copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
+        copyfile('static/defaultfiles/query_iso_amn_cs445.jpg', 'static/defaultvalues/query_iso_amn_cs445.jpg')
+
         if (video.filename == ''):
             videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
         else:
@@ -110,7 +117,7 @@ def form_ISO():
             query_image.save(os.path.join(query_path, query_image.filename))
             query_path = os.path.join(query_path, query_image.filename)
 
-        output = isoMapping('static/defaultvalues/query_iso_amn_cs445.jpg')
+        output = isoMapping(query_path)
 
         return render_template("result.html", images=output)
 
@@ -126,11 +133,14 @@ def form_example_2():
     if request.method == 'POST':  # this block is only entered when the form is submitted
         dataset_path = 'video_frames'
         index_path = 'index.csv'
-        query_path = 'queries'
+        query_path = 'static/defaultvalues'
         result_path = 'static/result'
 
         video = request.files['video']
         query_image = request.files['image']
+
+        copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
+        copyfile('static/defaultfiles/query4_amn_cs445.png', 'static/defaultvalues/query4_amn_cs445.png')
 
         if (video.filename == ''):
             videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
@@ -173,6 +183,9 @@ def form_orb():
     global default_query_image_filename
     default_img_name = "query4_amn_cs445.png"
     if request.method == 'POST':  # this block is only entered when the form is submitted
+        copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
+        copyfile('static/defaultfiles/query4_amn_cs445.png', 'static/defaultvalues/query4_amn_cs445.png')
+
         dataset_path = 'orb_video_frames'
         index_path = 'index_orb.csv'
         query_path = os.path.join('.', 'static', 'defaultvalues')
