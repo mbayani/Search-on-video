@@ -31,5 +31,5 @@ It shows 4 different implementations.
 3. ISO Mapping
 4. ORB
 
-[Welcome Page](https://github.com/mbayani/CS-445---Final-Project/blob/master/project-welcome%20page.png)
+![Welcome Page](project-welcome%20page.png)
 
