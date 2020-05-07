@@ -31,21 +31,5 @@ It shows 4 different implementations.
 3. ISO Mapping
 4. ORB
 
-## Screenshots
-Include logo/demo screenshot etc.
-
-## Tech/framework used
-Ex. -
-
-<b>Built with</b>
-- [Electron](https://electron.atom.io)
-
-## Features
-What makes your project stand out?
-
-
-
-
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
+[Welcome Page](./project-welcome page.png)
 
