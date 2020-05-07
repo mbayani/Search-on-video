@@ -97,7 +97,7 @@ def form_ISO():
         query_image = request.files['image']
 
         copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
-        copyfile('static/defaultfiles/query_iso_amn_cs445.jpg', 'static/defaultvalues/query_iso_amn_cs445.jpg')
+        copyfile('static/defaultfiles/query4_iso_amn_cs445.jpg', 'static/defaultvalues/query4_iso_amn_cs445.jpg')
 
         if (video.filename == ''):
             videofilename = 'static/defaultvalues/Video4_amn_cs445.mp4'
@@ -109,7 +109,7 @@ def form_ISO():
             videofilename = video.filename
 
         if (query_image.filename == ''):
-            query_path = 'static/defaultvalues/query_iso_amn_cs445.jpg'
+            query_path = 'static/defaultvalues/query4_iso_amn_cs445.jpg'
         else:
             # save query image
             if os.path.exists("static/defaultvalues/" + query_image.filename):
