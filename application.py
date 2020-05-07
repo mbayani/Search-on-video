@@ -117,6 +117,8 @@ def form_ISO():
             query_image.save(os.path.join(query_path, query_image.filename))
             query_path = os.path.join(query_path, query_image.filename)
 
+        videoSplitter = VideoSplitter('video_frames')
+        videoSplitter.splitVideo(videofilename)
         output = isoMapping(query_path)
 
         return render_template("result.html", images=output)
