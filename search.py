@@ -40,7 +40,7 @@ class Search:
 
 		for obj in os.scandir(self.dataset_path):
 			imageFileName = obj.name
-			print("imageFileName:%s"%imageFileName)
+			#print("imageFileName:%s"%imageFileName)
 			imagePath = os.path.join(self.dataset_path, imageFileName)
 			image = cv2.imread(imagePath)
 			keypoints, descriptors = self.image_features.imageKeypoints(image)
@@ -55,6 +55,7 @@ class Search:
 			resultMatch = (int(imageId), len(matches))
 			resultMatches.append(resultMatch)
 			matchImages.insert(int(imageId),img3)
+			cv2.imwrite('static/matches/match_'+imageId+'.jpg', img3)
 
 		searcher = Searcher(self.index_path)
 		results = searcher.searchKeypoints(resultMatches)
@@ -63,7 +64,7 @@ class Search:
 			imgMatchedFileName = 'frame' + str(resultID) + '_match.jpg'
 			result = cv2.imread(self.dataset_path + "/" + imgFileName)
 			cv2.imwrite(self.result_path + "/" + imgFileName, result)
-			matchedImage = matchImages[resultID]
+			matchedImage = cv2.imread('static/matches/match_'+str(resultID)+'.jpg') #matchImages[resultID]
 			cv2.imwrite(self.result_path + "/" + imgMatchedFileName, matchedImage)
 			output.append(self.result_path + "/" + imgFileName)
 			matchOutput.append(self.result_path + "/" + imgMatchedFileName)
