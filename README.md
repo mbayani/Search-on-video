@@ -44,7 +44,7 @@ Open url http://localhost:5000 (if port is not overridden). It shows 4 different
 ![Welcome Page](project-welcome%20page.png)
 
 ## Code Organization
-Under root folder:
+Under root folder, we have following scripts:
 - application.py - It provides web interface to the search engine. User can upload or use default video and a query image. 
 - features.py - It extracts the keypoints and features.
 - indexer.py - It save the features of a video frame into a file so we do not need to compute it again and again.
