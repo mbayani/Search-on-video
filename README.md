@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ```
 
 ## How to use?
-The project has web interface. 
+This project has web interface. 
 On Windows Platform, run below commands:
 ```
 set FLASK_APP=application.py
@@ -42,4 +42,14 @@ Open url http://localhost:5000 (if port is not overridden). It shows 4 different
 4. ORB
 
 ![Welcome Page](project-welcome%20page.png)
+
+## Code Organization
+Under root folder:
+- application.py - It provides web interface to the search engine. User can upload or use default video and a query image. 
+- features.py - It extracts the keypoints and features.
+- indexer.py - It save the features of a video frame into a file so we do not need to compute it again and again.
+- ISOMapping.py - It has all the functionality of ISO Mapping.
+- search.py - It takes query image and video frame and searches for closest match.
+- searcher.py - It takes the match result and tries to find best match based on SSD or variance.
+- videosplitter.py - It splits a video into individual frames.
 
