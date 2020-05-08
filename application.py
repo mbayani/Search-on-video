@@ -102,7 +102,7 @@ def form_ISO():
             # save video
             if os.path.exists(video.filename):
                 os.remove(video.filename)
-            video.save(os.path.join('static/defaultvalues/', video.filename))
+            video.save(os.path.join('', video.filename))
             videofilename = video.filename
 
         if (query_image.filename == ''):
