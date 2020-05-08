@@ -20,9 +20,6 @@ app = Flask(__name__)
 # app.register_blueprint(api_blueprint)
 
 
-default_video_filepath = os.path.join('.', 'static', 'defaultvalues')  # ,'Video4_amn_cs445.mp4')
-default_query_image_filepath = os.path.join('.', 'static', 'defaultvalues')  # ,'query_iso_amn_cs445.jpg')
-
 
 @app.route('/', methods=['GET'])  # allow both GET and POST requests
 def home():
@@ -181,8 +178,7 @@ def form_example_2():
 
 @app.route('/search_orb', methods=['GET', 'POST'])  # allow both GET and POST requests
 def form_orb():
-    global default_video_filename
-    global default_query_image_filename
+
     default_img_name = "query4_amn_cs445.png"
     if request.method == 'POST':  # this block is only entered when the form is submitted
         copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
@@ -191,9 +187,7 @@ def form_orb():
         dataset_path = 'orb_video_frames'
         index_path = 'index_orb.csv'
         query_path = os.path.join('.', 'static', 'defaultvalues')
-        os.makedirs(query_path, exist_ok=True)
         result_path = os.path.join('.', 'static', 'result')
-        os.makedirs(result_path, exist_ok=True)
         generate_frames = True
         video = request.files['video']
         query_image = request.files['image']
@@ -201,14 +195,12 @@ def form_orb():
         print("video.filename:%s" % video.filename)
         if video.filename:
             # save video
-            video_path = os.path.join(default_video_filepath, video.filename)
-            if os.path.exists(video_path):
-                os.remove(video_path)
-            print("video_path:%s" % video_path)
-            video.save(video_path)
-            videofilename = video_path  # video.filename
+            if os.path.exists(video.filename):
+                os.remove(video.filename)
+            video.save(os.path.join("", video.filename))
+            videofilename = video.filename
         else:
-            videofilename = os.path.join(default_video_filepath, 'Video4_amn_cs445.mp4')
+            videofilename = os.path.join(query_path, 'Video4_amn_cs445.mp4')
             dataset_path = os.path.join('.','orb_default_video_frames')
             index_path = os.path.join('.','index_orb_default.csv')
             print("os.path.exists(%s):%s"%(dataset_path,os.path.exists(dataset_path)))
@@ -223,8 +215,9 @@ def form_orb():
                 os.remove(query_img_path)
             query_image.save(query_img_path)
         else:
-            query_img_path = os.path.join(default_query_image_filepath, default_img_name)
+            query_img_path = os.path.join(query_path, default_img_name)
 
+        print("query_img_path:%s"%query_img_path)
         print("generate_frames:%s" % generate_frames)
         if generate_frames:
             print("dataset_path:%s" % dataset_path)
