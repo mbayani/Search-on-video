@@ -24,8 +24,18 @@ pip install -r requirements.txt
 ```
 
 ## How to use?
-The project has web interface. set ```FLASK_APP``` to ```application.py``` and run flask. Open url http://localhost:5000 (if port is not overridden).
-It shows 4 different implementations.
+The project has web interface. 
+On Windows Platform, run below commands:
+```
+set FLASK_APP=application.py
+flask run
+```
+On Linux/Mac Platform, run below commands:
+```
+export FLASK_APP=application.py
+flask run
+```
+Open url http://localhost:5000 (if port is not overridden). It shows 4 different implementations.
 1. SSD
 2. SIFT
 3. ISO Mapping
