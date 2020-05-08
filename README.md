@@ -53,3 +53,5 @@ Under root folder, we have following scripts:
 - searcher.py - It takes the match result and tries to find best match based on SSD or variance.
 - videosplitter.py - It splits a video into individual frames.
 
+## YouTube Presentation
+[YouTube Presentation Link!](https://www.youtube.com/embed/7WtMH7xXYCE)
