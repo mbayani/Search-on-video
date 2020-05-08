@@ -97,6 +97,7 @@ class Search:
 			resultMatch = (int(imageId), len(matches))
 			resultMatches.append(resultMatch)
 			matchImages.insert(int(imageId),img3)
+			cv2.imwrite('static/matches/orb_match_'+imageId+'.jpg', img3)
 
 		searcher = Searcher(self.index_path)
 		results = searcher.searchKeypoints(resultMatches, limit=10)
@@ -105,7 +106,7 @@ class Search:
 			imgMatchedFileName = 'orb_frame%s_match.jpg'%resultID
 			result = cv2.imread(os.path.join(self.dataset_path, imgFileName))
 			cv2.imwrite(os.path.join(self.result_path, 'orb_' + imgFileName), result)
-			matchedImage = matchImages[resultID]
+			matchedImage = cv2.imread('static/matches/orb_match_'+str(resultID)+'.jpg')#matchImages[resultID]
 			cv2.imwrite(os.path.join(self.result_path, imgMatchedFileName), matchedImage)
 			output.append(os.path.join(self.result_path, 'orb_' + imgFileName))
 			matchOutput.append(os.path.join(self.result_path,imgMatchedFileName))
