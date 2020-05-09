@@ -178,7 +178,6 @@ def form_example_2():
 
 @app.route('/search_orb', methods=['GET', 'POST'])  # allow both GET and POST requests
 def form_orb():
-
     default_img_name = "query4_amn_cs445.png"
     if request.method == 'POST':  # this block is only entered when the form is submitted
         copyfile('static/defaultfiles/Video4_amn_cs445.mp4', 'static/defaultvalues/Video4_amn_cs445.mp4')
@@ -205,7 +204,6 @@ def form_orb():
             index_path = os.path.join('.','index_orb_default.csv')
             print("os.path.exists(%s):%s"%(dataset_path,os.path.exists(dataset_path)))
             print("os.path.exists(%s):%s"%(index_path, os.path.exists(index_path)))
-            generate_frames = not (os.path.exists(dataset_path) and os.path.exists(index_path))
 
         print("query_image.filename:%s" % query_image.filename)
         if query_image.filename:
@@ -219,41 +217,26 @@ def form_orb():
 
         print("query_img_path:%s"%query_img_path)
         print("generate_frames:%s" % generate_frames)
-        if generate_frames:
-            print("dataset_path:%s" % dataset_path)
-            os.makedirs(dataset_path, exist_ok=True)
-            t1 = timeit.default_timer()
-            print("videofilename:%s" % videofilename)
-            videoSplitter = VideoSplitter(dataset_path)
-            videoSplitter.splitVideo(videofilename)
-            print("Time taken in Splitting Video:%s" % (timeit.default_timer() - t1))
-            t2 = timeit.default_timer()
-            indexer = Indexer(index_path, dataset_path)
-            indexer.indexImages()
-            print("Time taken in Indexing images:%s" % (timeit.default_timer() - t2))
-            t3 = timeit.default_timer()
-            search = Search(dataset_path, index_path, query_img_path, result_path)
-            results, matchResult = search.performORBKeypointsSearch()
-            print("Time taken in ORB Search:%s" % (timeit.default_timer() - t3))
-            print("results")
-            print(results)
-            print("matchResult")
-            print(matchResult)
 
-        else:
-            # default video and image result
-            results = ['.\\static\\result\\orb_frame90.jpg', '.\\static\\result\\orb_frame91.jpg',
-                       '.\\static\\result\\orb_frame68.jpg', '.\\static\\result\\orb_frame66.jpg',
-                       '.\\static\\result\\orb_frame70.jpg', '.\\static\\result\\orb_frame94.jpg',
-                       '.\\static\\result\\orb_frame92.jpg', '.\\static\\result\\orb_frame67.jpg',
-                       '.\\static\\result\\orb_frame73.jpg', '.\\static\\result\\orb_frame69.jpg',
-                       '.\\static\\result\\orb_frame65.jpg', '.\\static\\result\\orb_frame64.jpg']
-            matchResult = ['.\\static\\result\\orb_frame90_match.jpg', '.\\static\\result\\orb_frame91_match.jpg',
-                           '.\\static\\result\\orb_frame68_match.jpg', '.\\static\\result\\orb_frame66_match.jpg',
-                           '.\\static\\result\\orb_frame70_match.jpg', '.\\static\\result\\orb_frame94_match.jpg',
-                           '.\\static\\result\\orb_frame92_match.jpg', '.\\static\\result\\orb_frame67_match.jpg',
-                           '.\\static\\result\\orb_frame73_match.jpg', '.\\static\\result\\orb_frame69_match.jpg',
-                           '.\\static\\result\\orb_frame65_match.jpg', '.\\static\\result\\orb_frame64_match.jpg']
+        print("dataset_path:%s" % dataset_path)
+        os.makedirs(dataset_path, exist_ok=True)
+        t1 = timeit.default_timer()
+        print("videofilename:%s" % videofilename)
+        videoSplitter = VideoSplitter(dataset_path)
+        videoSplitter.splitVideo(videofilename)
+        print("Time taken in Splitting Video:%s" % (timeit.default_timer() - t1))
+        t2 = timeit.default_timer()
+        indexer = Indexer(index_path, dataset_path)
+        indexer.indexImages()
+        print("Time taken in Indexing images:%s" % (timeit.default_timer() - t2))
+        t3 = timeit.default_timer()
+        search = Search(dataset_path, index_path, query_img_path, result_path)
+        results, matchResult = search.performORBKeypointsSearch()
+        print("Time taken in ORB Search:%s" % (timeit.default_timer() - t3))
+        print("results")
+        print(results)
+        print("matchResult")
+        print(matchResult)
 
         return render_template("result-keypoints.html", images=results, matches=matchResult, header="ORB Results",
                                query_img=query_img_path)
