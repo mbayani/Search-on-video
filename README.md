@@ -1,5 +1,5 @@
 
-## CS445 Final Project (Spring2020)
+Search on Video
 Search on Video - It provides ability to search images within a video.
 
 ## Team Members
