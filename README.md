@@ -2,10 +2,7 @@
 # Search on Video
 Search on Video - It provides ability to search images within a video.
 
-## Team Members
-1. Negin Kashkooli(Email: negink2@illinois.edu)
-2. Mani Bayani(Email: mbayani2@illinois.edu)
-3. Amit Agrawal(Email: amita3@illinois.edu)
+
 
 ## Motivation
 Many businesses rely on visual data such as images and videos. In today’s information age, businesses
